@@ -1,0 +1,99 @@
+# ======================
+# SECRETS & ENVIRONMENT
+# ======================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+
+# ======================
+# NODE / EXPRESS
+# ======================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json   # optional: remove this line if your team commits lockfiles
+.npm
+.yarn/cache
+.yarn/unplugged
+.pnp.*
+
+# ======================
+# NEXT.JS / REACT
+# ======================
+.next/
+out/
+build/
+dist/
+.vercel
+.turbo
+next-env.d.ts
+
+# ======================
+# MONGODB
+# ======================
+*.db
+*.sqlite
+mongo-data/
+data/db/
+dump/
+mongodump/
+
+# ======================
+# LOGS & TEMP
+# ======================
+logs/
+*.log
+pids/
+*.pid
+*.seed
+*.pid.lock
+tmp/
+temp/
+.cache/
+
+# ======================
+# OS FILES
+# ======================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ======================
+# EDITOR / IDE
+# ======================
+.idea/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode/extensions.json
+
+# ======================
+# TESTING & COVERAGE
+# ======================
+coverage/
+.nyc_output/
+*.lcov
+test-results/
+playwright-report/
+cypress/videos/
+cypress/screenshots/
+
+# ======================
+# MISC
+# ======================
+.eslintcache
+.stylelintcache
+storybook-static/
