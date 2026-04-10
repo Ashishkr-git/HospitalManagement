@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ======================
 # SECRETS & ENVIRONMENT
 # ======================
@@ -97,3 +98,10 @@ cypress/screenshots/
 .eslintcache
 .stylelintcache
 storybook-static/
+=======
+node_modules/
+.env
+dist/
+build/
+.DS_Store
+>>>>>>> b82d996cb3657854238659f11c60249675724594

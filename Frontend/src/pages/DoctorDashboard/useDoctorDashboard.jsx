@@ -41,7 +41,11 @@ export const useDoctorDashboard = () => {
         `${API_URL}/treatments?role=${roleParam}&userId=${user._id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
+<<<<<<< HEAD
         },
+=======
+        }
+>>>>>>> b82d996cb3657854238659f11c60249675724594
       );
 
       if (!response.ok) {
@@ -96,6 +100,7 @@ export const useDoctorDashboard = () => {
 
     if (total > 0) {
       const completed = sanitizedHistory.filter(
+<<<<<<< HEAD
         (s) => s.status === "Completed",
       ).length;
       const cancelled = sanitizedHistory.filter(
@@ -106,6 +111,18 @@ export const useDoctorDashboard = () => {
       ).length;
       const scheduled = sanitizedHistory.filter(
         (s) => s.status === "Scheduled",
+=======
+        (s) => s.status === "Completed"
+      ).length;
+      const cancelled = sanitizedHistory.filter(
+        (s) => s.status === "Cancelled"
+      ).length;
+      const ongoing = sanitizedHistory.filter(
+        (s) => s.status === "Ongoing"
+      ).length;
+      const scheduled = sanitizedHistory.filter(
+        (s) => s.status === "Scheduled"
+>>>>>>> b82d996cb3657854238659f11c60249675724594
       ).length;
 
       if (completed === total) {
@@ -128,13 +145,22 @@ export const useDoctorDashboard = () => {
               treatmentHistory: sanitizedHistory,
               status: newStatus,
             }
+<<<<<<< HEAD
           : appt,
       ),
+=======
+          : appt
+      )
+>>>>>>> b82d996cb3657854238659f11c60249675724594
     );
 
     try {
       setError(null);
+<<<<<<< HEAD
       const token = sessionStorage.getItem("token");
+=======
+      const token = localStorage.getItem("token");
+>>>>>>> b82d996cb3657854238659f11c60249675724594
 
       // --- 3. Save Roadmap ---
       const roadmapResponse = await fetch(
@@ -146,7 +172,11 @@ export const useDoctorDashboard = () => {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ treatmentHistory: sanitizedHistory }),
+<<<<<<< HEAD
         },
+=======
+        }
+>>>>>>> b82d996cb3657854238659f11c60249675724594
       );
 
       if (!roadmapResponse.ok) {
@@ -154,6 +184,7 @@ export const useDoctorDashboard = () => {
       }
 
       // --- 4. Force Status Update ---
+<<<<<<< HEAD
       const statusResponse = await fetch(`${API_URL}/treatments/${id}/status`, {
         method: "PATCH",
         headers: {
@@ -162,6 +193,19 @@ export const useDoctorDashboard = () => {
         },
         body: JSON.stringify({ status: newStatus }),
       });
+=======
+      const statusResponse = await fetch(
+        `${API_URL}/treatments/${id}/status`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ status: newStatus }),
+        }
+      );
+>>>>>>> b82d996cb3657854238659f11c60249675724594
 
       if (!statusResponse.ok) {
         throw new Error("Failed to update status");
@@ -251,12 +295,20 @@ export const useDoctorDashboard = () => {
 
         const totalCost = history.reduce(
           (sum, v) => sum + (parseFloat(v.cost) || 0),
+<<<<<<< HEAD
           0,
+=======
+          0
+>>>>>>> b82d996cb3657854238659f11c60249675724594
         );
 
         const totalPaid = history.reduce(
           (sum, v) => sum + (parseFloat(v.paidAmount) || 0),
+<<<<<<< HEAD
           0,
+=======
+          0
+>>>>>>> b82d996cb3657854238659f11c60249675724594
         );
 
         const dueAmount = totalCost - totalPaid;
@@ -280,7 +332,11 @@ export const useDoctorDashboard = () => {
           const allComp = steps.every((s) => s.status === "Completed");
           const allCanc = steps.every((s) => s.status === "Cancelled");
           const anyProg = steps.some(
+<<<<<<< HEAD
             (s) => s.status === "Ongoing" || s.status === "Completed",
+=======
+            (s) => s.status === "Ongoing" || s.status === "Completed"
+>>>>>>> b82d996cb3657854238659f11c60249675724594
           );
 
           if (allComp) displayStatus = "Completed";
@@ -322,7 +378,11 @@ export const useDoctorDashboard = () => {
         paid: acc.paid + (curr.paidRaw || 0),
         due: acc.due + (curr.dueRaw || 0),
       }),
+<<<<<<< HEAD
       { total: 0, paid: 0, due: 0 },
+=======
+      { total: 0, paid: 0, due: 0 }
+>>>>>>> b82d996cb3657854238659f11c60249675724594
     );
   }, [filteredData]);
 
@@ -356,4 +416,8 @@ export const useDoctorDashboard = () => {
       setCustomRange,
     },
   };
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> b82d996cb3657854238659f11c60249675724594
