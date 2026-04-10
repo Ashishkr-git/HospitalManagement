@@ -12,11 +12,7 @@ const protect = async (req, res, next) => {
     try {
       // Get token from header (Format: "Bearer <token>")
       token = req.headers.authorization.split(" ")[1];
-<<<<<<< HEAD
       console.log("Raw token received by backend:", token);
-=======
-
->>>>>>> b82d996cb3657854238659f11c60249675724594
       // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
