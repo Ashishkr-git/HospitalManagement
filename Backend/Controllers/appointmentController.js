@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const Appointment = require("../models/Appointment");
-const Treatment = require("../models/Treatment");
-const User = require("../models/User");
+const Appointment = require("../Models/Appointment");
+const Treatment = require("../Models/Treatment");
+const User = require("../Models/User");
 
 // FIX: Transactions REMOVED to prevent "Transaction numbers only allowed on replica set" error.
 exports.createAppointment = async (req, res, next) => {
@@ -48,7 +48,7 @@ exports.createAppointment = async (req, res, next) => {
             age: Number(age),
             lastTreatmentUpdate: new Date(),
           },
-        }
+        },
       );
     }
 

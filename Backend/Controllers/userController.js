@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../Models/User");
 
 // Helper to format "Last Active" (e.g., "2 hours ago")
 const timeAgo = (date) => {
@@ -61,7 +61,7 @@ exports.updateUserRole = async (req, res, next) => {
     const user = await User.findByIdAndUpdate(
       id,
       { role: role.toLowerCase() }, // Convert "Admin" -> "admin"
-      { new: true }
+      { new: true },
     );
 
     if (!user) {

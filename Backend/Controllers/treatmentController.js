@@ -1,4 +1,4 @@
-const Treatment = require("../models/Treatment");
+const Treatment = require("../Models/Treatment");
 const mongoose = require("mongoose");
 
 // --- GET: Fetch Appointments for Dashboard ---
@@ -70,7 +70,7 @@ exports.updateRoadmap = async (req, res, next) => {
       treatmentHistory.length > 0 &&
       treatmentHistory.every((visit) => visit.status === "Completed");
     const anyInProgress = treatmentHistory.some(
-      (visit) => visit.status === "Completed"
+      (visit) => visit.status === "Completed",
     );
 
     if (allCompleted) {
@@ -102,7 +102,7 @@ exports.updateTreatmentStatus = async (req, res, next) => {
     const treatment = await Treatment.findByIdAndUpdate(
       id,
       { treatmentStatus: status },
-      { new: true }
+      { new: true },
     );
 
     res.json({ success: true, data: treatment });

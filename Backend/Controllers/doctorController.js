@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../Models/User");
 
 // --- GET DOCTORS LIST ---
 // Route: GET /api/doctors/list
@@ -8,7 +8,7 @@ exports.getDoctorsList = async (req, res, next) => {
     // 1. Find users where role is "doctor"
     // 2. .select() -> Only return specific fields to make the request fast
     const doctors = await User.find({ role: "doctor" }).select(
-      "name _id department"
+      "name _id department",
     );
 
     res.json(doctors);
