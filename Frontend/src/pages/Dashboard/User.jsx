@@ -55,7 +55,7 @@ export default function UsersTable() {
   const fetchUsers = async () => {
     try {
       const token = sessionStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/api/users", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -267,7 +267,7 @@ export default function UsersTable() {
               <div
                 onClick={() =>
                   setMobileExpandedId(
-                    mobileExpandedId === user.id ? null : user.id
+                    mobileExpandedId === user.id ? null : user.id,
                   )
                 }
                 className="flex items-center justify-between p-4 transition-colors cursor-pointer active:bg-gray-50"

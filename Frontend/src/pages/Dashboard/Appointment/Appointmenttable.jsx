@@ -41,10 +41,10 @@ const useAppointmentLogic = (user) => {
       try {
         const token = sessionStorage.getItem("token");
         const res = await fetch(
-          `http://localhost:5000/api/treatments?role=${user?.role}&userId=${user?._id}`,
+          `${import.meta.env.VITE_API_URL}/treatments?role=${user?.role}&userId=${user?._id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
-          }
+          },
         );
         const data = await res.json();
         setAppointments(Array.isArray(data) ? data : []);
@@ -59,7 +59,7 @@ const useAppointmentLogic = (user) => {
 
   const uniqueDoctors = useMemo(
     () => ["All Doctors", ...new Set(appointments.map((i) => i.doctor))],
-    [appointments]
+    [appointments],
   );
   const uniqueMethods = useMemo(
     () => [
@@ -68,11 +68,11 @@ const useAppointmentLogic = (user) => {
         appointments.map(
           (i) =>
             i.treatmentHistory?.[i.treatmentHistory.length - 1]
-              ?.paymentMethod || "Pending"
-        )
+              ?.paymentMethod || "Pending",
+        ),
       ),
     ],
-    [appointments]
+    [appointments],
   );
 
   const filteredData = useMemo(() => {
@@ -125,7 +125,7 @@ const useAppointmentLogic = (user) => {
         const cost = hist.reduce((s, v) => s + (parseFloat(v.cost) || 0), 0);
         const paid = hist.reduce(
           (s, v) => s + (parseFloat(v.paidAmount) || 0),
-          0
+          0,
         );
         return {
           ...appt,
@@ -147,7 +147,7 @@ const useAppointmentLogic = (user) => {
 
   const revenue = filteredData.reduce(
     (acc, curr) => acc + (curr.paidRaw || 0),
-    0
+    0,
   );
 
   return {

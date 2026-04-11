@@ -29,8 +29,6 @@ import { Input } from "@/components/lightswind/input";
 import { Button } from "@/components/lightswind/button";
 import ErrorAlert from "../../components/common/ErrorAlert";
 
-const API_URL = "http://localhost:5000/api";
-
 const appointmentSchema = z.object({
   patient: z.string().min(2, { message: "Required" }),
   phone: z
@@ -84,9 +82,12 @@ export const AppointmentFormModal = ({ isOpen, onClose, onSuccess }) => {
     const fetchDoctors = async () => {
       try {
         const token = sessionStorage.getItem("token");
-        const response = await fetch(`${API_URL}/doctors/list`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/doctors/list`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
 
         if (response.ok) {
           const data = await response.json();
@@ -141,7 +142,6 @@ export const AppointmentFormModal = ({ isOpen, onClose, onSuccess }) => {
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
         {/* max-w-lg for slightly wider layout, max-h-[90vh] for small screens */}
         <div className="w-full max-w-lg overflow-hidden bg-white shadow-2xl rounded-xl animate-in zoom-in-95 flex flex-col max-h-[90vh]">
-          
           {/* Header */}
           <div className="flex items-center justify-between px-5 py-3 border-b border-gray-100 bg-gray-50/50 shrink-0">
             <div>

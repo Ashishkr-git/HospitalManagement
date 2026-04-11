@@ -26,8 +26,6 @@ import { Input } from "@/components/lightswind/input";
 import { Button } from "@/components/lightswind/button";
 import ErrorAlert from "../../components/common/ErrorAlert";
 
-const API_URL = "http://localhost:5000/api";
-
 // --- Validation Schema ---
 const memberSchema = z.object({
   name: z.string().min(2, { message: "Name required (min 2 chars)" }),
@@ -80,14 +78,17 @@ export default function AddMemberModal({ isOpen, onClose, onSuccess }) {
 
     try {
       const token = sessionStorage.getItem("token");
-      const response = await fetch(`${API_URL}/auth/register-staff`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/auth/register-staff`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(data),
         },
-        body: JSON.stringify(data),
-      });
+      );
 
       const result = await response.json();
 

@@ -2,8 +2,6 @@ import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
-const API_URL = "http://localhost:5000/api";
-
 export const useDoctorDashboard = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -38,7 +36,7 @@ export const useDoctorDashboard = () => {
       const roleParam = user.role ? user.role.toLowerCase() : "";
 
       const response = await fetch(
-        `${API_URL}/treatments?role=${roleParam}&userId=${user._id}`,
+        `${import.meta.env.VITE_API_URL}/treatments?role=${roleParam}&userId=${user._id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },

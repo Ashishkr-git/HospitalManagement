@@ -50,16 +50,19 @@ const Login = () => {
     form.clearErrors("root");
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        import.meta.env.VITE_API_URL + "/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            phone: data.phone,
+            password: data.password,
+          }),
         },
-        body: JSON.stringify({
-          phone: data.phone,
-          password: data.password,
-        }),
-      });
+      );
 
       const result = await response.json();
 
@@ -80,7 +83,7 @@ const Login = () => {
         // If role is 'patient' or anything else, DENY ACCESS
         // Do NOT call login() here, or AuthContext will persist the session
         throw new Error(
-          "Access Denied: You do not have permission to access the dashboard."
+          "Access Denied: You do not have permission to access the dashboard.",
         );
       }
     } catch (error) {
