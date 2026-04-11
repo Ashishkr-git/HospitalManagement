@@ -22,7 +22,7 @@ app.use(
   cors({
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
     credentials: true, // Allows cookies/headers if needed
-  })
+  }),
 );
 
 // Body Parser: Allows backend to read JSON data from req.body
@@ -56,6 +56,6 @@ app.listen(PORT, () => {
   console.log(
     `🚀 Server running in ${
       process.env.NODE_ENV || "development"
-    } mode on port ${PORT}`
+    } mode on port ${PORT}`,
   );
 });
