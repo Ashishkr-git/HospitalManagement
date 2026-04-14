@@ -30,7 +30,7 @@ export default function AppointmentDetails() {
         }
 
         const data = await response.json();
-        setAppointmentData(data);
+        setAppointmentData(result.data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -97,8 +97,6 @@ export default function AppointmentDetails() {
             </div>
 
             <div className="p-8">
-              {/* DISPLAY YOUR DATA HERE */}
-              {/* Note: Update these fields based on what your backend actually returns! */}
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <p className="text-sm text-gray-500">Patient Name</p>
