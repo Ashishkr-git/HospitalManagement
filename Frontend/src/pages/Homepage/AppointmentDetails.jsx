@@ -29,7 +29,7 @@ export default function AppointmentDetails() {
           );
         }
 
-        const data = await response.json();
+        const result = await response.json();
         setAppointmentData(result.data);
       } catch (err) {
         setError(err.message);
